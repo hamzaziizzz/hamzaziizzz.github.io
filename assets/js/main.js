@@ -151,12 +151,27 @@ themeButton.addEventListener('click', () => {
 })
 
 /*==================== CONTACT RESPONSES ====================*/
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzrZXmYrN25j_tScSUIgcfTNX8HKLgdF7MCRCiluj2HpGNn3RQweTCeRFH9KXcmC15v4w/exec'
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxlJtia6NPJcs92fyC_YCA11lAY2SeNRzT6kkVpB7MVNnNqWDBUIu2BrD3YmwD2TWMuqw/exec'
 const form = document.forms['contactForm']
+const success = document.getElementById('success')
+const failure = document.getElementById('failure')
 
 form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => alert("Thank you for your message, I'll contact you as soon as possible"))
+        .then(response => {
+            if (response.ok) {
+                success.style.display = 'block'
+            } else {
+                failure.style.display = 'block'
+            }
+            form.reset()
+            setTimeout(() => {
+                success.style.display = 'none'
+                failure.style.display = 'none'
+            }, 2000)
+        })
         .catch(error => console.error('Error!', error.message))
 })
+
+

@@ -19,6 +19,8 @@
     --text-color-light: hsl(var(--hue-color), 8%, 65%);
     --text-color-dark: hsl(var(--hue-color), 8%, 25%);
     --input-color: hsl(var(--hue-color), 70%, 96%);
+    --contact-success-color: hsl(122, 99%, 32%);
+    --contact-failure-color: hsl(0, 100%, 50%);
     --body-color: hsl(var(--hue-color), 60%, 99%);
     --container-color: hsl(0, 0%, 100%);
     --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
@@ -77,6 +79,8 @@ body.dark-theme{
     --first-color-second: hsl(var(--hue-color), 30%, 8%);
     --title-color: hsl(var(--hue-color), 8%, 95%);
     --text-color: hsl(var(--hue-color), 8%, 75%);
+    --contact-success-color: hsl(122, 100%, 70%);
+    --contact-failure-color: hsl(0, 100%, 72%);
     --input-color: hsl(var(--hue-color), 29%, 16%);
     --body-color: hsl(var(--hue-color), 28%, 12%);
     --container-color: hsl(var(--hue-color), 29%, 16%);
@@ -136,23 +140,6 @@ a{
 img{
     max-width: 100%;
     height: auto;
-}
-
-button{
-    border: 0;
-    cursor: pointer;
-    display: inline-block;
-    background-color: var(--first-color);
-    color: #FFF;
-    padding: 1rem;
-    border-radius: .5rem;
-    font-weight: var(--font-medium);
-    font-family: var(--body-font);
-    font-size: var(--normal-font-size);
-}
-
-button:hover{
-    background-color: var(--first-color-second);
 }
 
 /*==================== REUSABLE CSS CLASSES ====================*/
@@ -368,7 +355,7 @@ button:hover{
 }
 
 /*==================== BUTTONS ====================*/
-.button{
+.button, button{
     display: inline-block;
     background-color: var(--first-color);
     color: #FFF;
@@ -377,8 +364,19 @@ button:hover{
     font-weight: var(--font-medium);
 }
 
-.button:hover{
+button{
+    border: 0;
+    cursor: pointer;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+}
+
+.button:hover, button:hover{
     background-color: var(--first-color-alt);
+}
+
+.contact__button:hover .button__icon{
+    transform: translateX(.25rem);
 }
 
 .button__icon{
@@ -795,6 +793,43 @@ button:hover{
     border: none;
     outline: none;
     padding: .25rem .5rem .5rem 0;
+}
+
+.contact__message{
+    width: 100%;
+    position: relative;
+    margin-bottom: var(--mb-0-2);
+    display: flex;
+    justify-content: center;
+}
+
+.contact__success{
+    font-size: var(--normal-font-size);
+    color: var(--contact-success-color);
+    position: absolute;
+    animation: buttons .3s linear;
+    display: none;
+}
+
+.contact__failure{
+    font-size: var(--normal-font-size);
+    color: var(--contact-failure-color);
+    position: absolute;
+    transform: .3s;
+    animation: buttons .3s linear;
+    display: none;
+}
+
+@keyframes buttons{
+    0%{
+        transform: scale(0.1);
+    }
+    50%{
+        transform: scale(0.5);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
 
 /*==================== FOOTER ====================*/
